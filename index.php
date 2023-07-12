@@ -12,6 +12,12 @@ if(isset($_SERVER['PATH_INFO'])){
         case '/home':
             $obj->home();
         break;
+        case '/delete':
+            $obj->delete();
+        break;
+        case '/edit':
+            $obj->edit();
+        break;        
         default:
             echo "wrong choice";
         break;        

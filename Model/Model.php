@@ -29,7 +29,61 @@ class Model{
             echo "data not inserted";
         }
     }
-}
+
+    /*
+    select query:
+    1.para :table
+    */
+    public function select_data($table){
+       $query ="select * from $table";
+       $res=$this->connection->query($query);
+       while($row=$res->fetch_object()){
+          $result[]=$row;
+       }
+       return $result ?? [];
+
+    }
+
+    /*
+
+    delete query
+    1.table
+    2.where
+    */
+
+    public function delete_data($table,$data){
+        //"delete from table where id=1 and color =red";
+        $query ="delete from $table where 1=1";
+        foreach($data as $key =>$val){
+                $query.= " AND ". $key ." = '".$val . "'";
+        }
+        echo $query;
+        if($this->connection->query($query)){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+    public function select_where_data($table,$data){
+        //"delete from table where id=1 and color =red";
+        $query ="select *  from $table where 1=1";
+        foreach($data as $key =>$val){
+                $query.= " AND ". $key ." = '".$val . "'";
+        }
+        //echo $query;
+        $res=$this->connection->query($query);
+        while($row=$res->fetch_object()){
+          $result[]=$row;
+        }
+        return $result ?? [];
+
+
+        
+
+    }
+    }
 
 
 ?>
